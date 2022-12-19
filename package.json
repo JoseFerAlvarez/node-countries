@@ -1,0 +1,8 @@
+{
+    "name": "node-countries",
+    "version": "0.1.0",
+    "private": true,
+    "devDependencies": {
+        "@types/node": "^18.11.17"
+    }
+}
