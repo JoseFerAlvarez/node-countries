@@ -107,7 +107,7 @@ Maldives 540,544 300 1
 Mali 20,250,833 1,220,190
 Malta 441,543 320 1
 Marshall Islands 59,190 180
-Mauritania 4,649,658 1,030
+Mauritania 4,649,658 1,030,000
 Mauritius 1,271,768 2,030
 Mexico 128,932,753 1,943,950
 Micronesia 548,914 700
@@ -142,7 +142,7 @@ Poland 37,846,611 306,230
 Portugal 10,196,709 91,590
 Qatar 2,881,053 11,610
 Romania 19,237,691 230,170
-Russia 145,934,462 16,376
+Russia 145,934,462 17,098,246
 Rwanda 12,952,218 24,670
 Saint Kitts and Nevis 53,199 260
 Saint Lucia 183,627 610

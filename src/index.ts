@@ -19,7 +19,7 @@ countries = orderByDensity(countries);
 
 createCSV(countries);
 
-
+/*Transforms the array of strings into an array of objects*/
 function getCountries(lines: string[]): Country[] {
     let countries: Country[] = [];
 
@@ -30,8 +30,8 @@ function getCountries(lines: string[]): Country[] {
 
         let country: string[] = [];
 
-        for (let letter = lines[line].length; letter >= 0; letter--) {
-            if (lines[line][letter] === " " && spaces < 2) {
+        for (let letter: number = lines[line].length; letter >= 0; letter--) {
+            if (lines[line][letter] === " ") {
                 country.push(lines[line].substring(jump, letter + 1));
                 jump = letter;
                 spaces++;
@@ -40,19 +40,47 @@ function getCountries(lines: string[]): Country[] {
             }
         }
 
-        if (country.length === 3) {
-            countries.push({
-                name: country[2],
-                population: getPopulation(country[1]),
-                area: getArea(country[0]),
-                density: getDensity(getPopulation(country[1]), getArea(country[0]))
-            })
-        } else {
-            console.log("The country is invalid");
-        }
+        country = setCountry(country);
+
+        countries.push({
+            name: country[0],
+            population: Number(country[1]),
+            area: Number(country[2]),
+            density: getDensity(Number(country[1]), Number(country[2]))
+        })
     }
 
     return countries;
+}
+
+/*Set the country with correct values*/
+function setCountry(country: string[]): string[] {
+    let newCountry: string[] = [];
+    let name: string[] = [];
+
+    country.forEach((item: string) => {
+        if (!isNaN(Number(item[0]))) {
+            newCountry.push(item.split(",").join(""));
+        } else {
+            name.push(item);
+        }
+    })
+
+    newCountry.push((name.reverse()).join(" "));
+    newCountry = newCountry.reverse();
+
+    if (newCountry.length === 2) {
+        newCountry = [...newCountry, "0"];
+    } else if (newCountry.length > 3) {
+        let sum = 0;
+
+        for (let i = 2; i < newCountry.length; i++) {
+            sum += Number(newCountry[i]);
+        }
+        newCountry[2] = sum.toString();
+    }
+
+    return newCountry;
 }
 
 /* Get the full area of the country */
@@ -69,7 +97,13 @@ function getPopulation(numbers: string): number {
 
 /* Get the density of the country */
 function getDensity(population: number, area: number): number {
-    return (population / area);
+
+    if (population === 0 || area === 0) {
+        return 0;
+    } else {
+        return (population / area);
+    }
+
 }
 
 /* Sort countries by density in descending order */
